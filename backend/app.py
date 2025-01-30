@@ -22,20 +22,6 @@ async def lifespan(app: FastAPI):
     app.state.container = container
     yield
     await app.state.dishka_container.close()
-    
-    
-def base_create_app():
-    app = FastAPI()
-    app.include_router(api_router)
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=['http://localhost:3000'],
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
-    container = build_container()
-    return container, app
 
 
 def create_app():
